@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Data;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace Web.Controllers
 {
     //[Authorize(Policy = Constants.LeanPolicy)]
+    [ApiController]
     [Route("api/leagues")]
-    public class LeaguesController : Controller
+    public class LeaguesController : ControllerBase
     {
         private readonly CompetifyDbContext _db;
 

@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
+    [ApiController]
     [Route("api/authentication")]
-    public class AuthenticationController : Controller
+    public class AuthenticationController : ControllerBase
     {
         [HttpPost("[action]")]
         public IActionResult Authenticate([FromBody] AuthenticationRequest request)
