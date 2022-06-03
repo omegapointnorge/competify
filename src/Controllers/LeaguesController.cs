@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace Web.Controllers
 {
     //[Authorize(Policy = Constants.LeanPolicy)]
-    [Route("api/[controller]")]
+    [Route("api/leagues")]
     public class LeaguesController : Controller
     {
         private readonly CompetifyDbContext _db;
