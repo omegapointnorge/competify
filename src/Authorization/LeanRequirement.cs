@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace com.martinmelhus.competify.web.Authorization
+namespace Web.Authorization
 {
     public class LeanRequirement : IAuthorizationRequirement
     {

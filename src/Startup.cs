@@ -1,5 +1,5 @@
-using com.martinmelhus.competify.web.Authorization;
-using com.martinmelhus.competify.web.Data;
+using Web.Authorization;
+using Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,8 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Hosting;
 
-namespace com.martinmelhus.competify.web
+namespace Web
 {
     public class Startup
     {
@@ -26,9 +28,13 @@ namespace com.martinmelhus.competify.web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddControllersWithViews();
+
             var connectionString = Configuration["ConnectionString"];
             services.AddDbContext<CompetifyDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(Constants.LeanPolicy, policy =>
@@ -51,7 +57,7 @@ namespace com.martinmelhus.competify.web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             if (env.IsDevelopment())
@@ -67,20 +73,20 @@ namespace com.martinmelhus.competify.web
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
 
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>

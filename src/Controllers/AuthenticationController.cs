@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
-namespace com.martinmelhus.competify.web.Controllers
+namespace Web.Controllers
 {
     [Route("api/[controller]")]
     public class AuthenticationController : Controller

@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using com.martinmelhus.competify.web.Data;
+using Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace com.martinmelhus.competify.web.Controllers
+namespace Web.Controllers
 {
-    [Authorize(Policy = Constants.LeanPolicy)]
+    //[Authorize(Policy = Constants.LeanPolicy)]
     [Route("api/[controller]")]
     public class LeaguesController : Controller
     {

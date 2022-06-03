@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace com.martinmelhus.competify.web.Migrations
+namespace Web.Migrations
 {
     public partial class AddsRounds : Migration
     {

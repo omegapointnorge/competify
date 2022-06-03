@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using com.martinmelhus.competify.web.Data;
+using Web.Data;
 
-namespace com.martinmelhus.competify.web.Migrations
+namespace Web.Migrations
 {
     [DbContext(typeof(CompetifyDbContext))]
     [Migration("20181011170425_Initial")]
@@ -20,7 +20,7 @@ namespace com.martinmelhus.competify.web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("com.martinmelhus.competify.web.Data.Competitor", b =>
+            modelBuilder.Entity("Web.Data.Competitor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace com.martinmelhus.competify.web.Migrations
                     b.ToTable("Competitors");
                 });
 
-            modelBuilder.Entity("com.martinmelhus.competify.web.Data.League", b =>
+            modelBuilder.Entity("Web.Data.League", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,9 +54,9 @@ namespace com.martinmelhus.competify.web.Migrations
                     b.ToTable("Leagues");
                 });
 
-            modelBuilder.Entity("com.martinmelhus.competify.web.Data.Competitor", b =>
+            modelBuilder.Entity("Web.Data.Competitor", b =>
                 {
-                    b.HasOne("com.martinmelhus.competify.web.Data.League")
+                    b.HasOne("Web.Data.League")
                         .WithMany("Competitors")
                         .HasForeignKey("LeagueId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -1,7 +1,7 @@
-﻿using com.martinmelhus.competify.web.Data;
+﻿using Web.Data;
 using System;
 
-namespace com.martinmelhus.competify.web
+namespace Web
 {
     public static class EloCalculator
     {

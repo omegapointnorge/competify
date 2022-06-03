@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace com.martinmelhus.competify.web.Data
+namespace Web.Data
 {
     public class Competitor : Entity
     {
