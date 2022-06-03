@@ -1,0 +1,96 @@
+﻿
+
+.leaderboard tr span {
+    display: inline-block;
+    padding: 0.2em 0;
+}
+.leaderboard .rating {
+    background: #333;
+    padding: 0.2em 0.5em;
+    color: white;
+    font-family: Consolas, monospace;
+}
+
+.selected {
+    font-weight: bold;
+}
+
+button.selected {
+    border-bottom-color: #000;
+}
+
+.onclick-enabled:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.placeholder {
+    width: 100%;
+    text-align: center;
+}
+
+.placeholder p {
+    width: 100%;
+    padding: 1em 2em;
+    border: 1px solid #ddd;
+    background: #eee;
+}
+
+.round {
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.round .competitor,
+.round .vs {
+    display: inline-block;
+    position: relative;
+    padding: 0.2em 0.5em;
+}
+
+.round .competitor {
+    font-size: 24px;
+    background: #eee;
+}
+
+.round .vs {
+    font-size: 16px;
+    background: #333;
+    color: white;
+    margin: 0 1em;
+}
+
+.round .competitor .remove-btn {
+    background: none;
+    border: none;
+    position: absolute;
+    left: -20px;
+    top: -15px;
+}
+
+
+table .winner, 
+table .loser, 
+table .draw, 
+table .timestamp {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.round .competitor.winner,
+.winner {
+    font-weight: bold;
+    background-color: rgb(200, 255, 200);
+}
+.round .competitor.draw,
+.draw {
+    background-color: rgb(238, 238, 238);
+}
+.round .competitor.loser,
+.loser {
+    background-color: rgb(255, 200, 200);
+}
