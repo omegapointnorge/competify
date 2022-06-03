@@ -30,25 +30,15 @@ namespace Web
         {
 
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
 
-            var connectionString = Configuration["ConnectionString"];
-            services.AddDbContext<CompetifyDbContext>(options => options.UseSqlServer(connectionString));
-
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(Constants.LeanPolicy, policy =>
-                {
-                    policy.AddRequirements(new LeanRequirement());
-                });
-            });
-            services.AddSingleton<IAuthorizationHandler, LeanAuthorizationHandler>();
-
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            var connectionString = Configuration["ConnectionString"];
+            services.AddDbContext<CompetifyDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSwaggerGen(config =>
             {
@@ -81,8 +71,9 @@ namespace Web
             app.UseSpaStaticFiles();
             
             app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+
+            // app.UseAuthentication();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
