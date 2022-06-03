@@ -34,7 +34,7 @@ namespace Web.Controllers
         }
 
 
-        [HttpPost("{leagueId}/Competitor")]
+        [HttpPost("{leagueId}/competitor")]
         public async Task<IActionResult> AddCompetitor(int leagueId, [FromBody] AddCompetitorDto request)
         {
             var league = await _db.Leagues.Include(x => x.Competitors).FirstOrDefaultAsync(x => x.Id == leagueId);
@@ -55,7 +55,7 @@ namespace Web.Controllers
             public string Name { get; set; }
         }
 
-        [HttpPost("{leagueId}/AddRound")]
+        [HttpPost("{leagueId}/addRound")]
         public async Task<IActionResult> AddRound(int leagueId, [FromBody] AddRoundDto request)
         {
             var league = await GetLeagueForSummary(leagueId);
@@ -99,7 +99,7 @@ namespace Web.Controllers
             return new CreatedResult($"/api/Leagues/{league.Id}", league.Summary());
         }
 
-        [HttpPost("{leagueId}/UndoAddRound")]
+        [HttpPost("{leagueId}/undoAddRound")]
         public async Task<IActionResult> UndoAddRound(int leagueId)
         {
             var league = await GetLeagueForSummary(leagueId);
