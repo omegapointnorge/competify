@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Web.Data;
+using Data;
 
 namespace Web.Migrations
 {
     [DbContext(typeof(CompetifyDbContext))]
-    [Migration("20190505160008_BonusRatingChange")]
-    partial class BonusRatingChange
+    [Migration("20190425140344_Round.Reaction")]
+    partial class RoundReaction
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,8 +60,6 @@ namespace Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BonusRatingChange");
 
                     b.Property<int>("CompetitorA");
 

@@ -5,19 +5,19 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Web.Data;
+using Data;
 
 namespace Web.Migrations
 {
     [DbContext(typeof(CompetifyDbContext))]
-    [Migration("20181011172232_AddsRounds")]
-    partial class AddsRounds
+    [Migration("20190505160008_BonusRatingChange")]
+    partial class BonusRatingChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -61,6 +61,8 @@ namespace Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BonusRatingChange");
+
                     b.Property<int>("CompetitorA");
 
                     b.Property<int>("CompetitorB");
@@ -68,6 +70,12 @@ namespace Web.Migrations
                     b.Property<DateTime>("Created");
 
                     b.Property<int>("LeagueId");
+
+                    b.Property<int>("RatingChangeA");
+
+                    b.Property<int>("RatingChangeB");
+
+                    b.Property<int>("Reaction");
 
                     b.Property<int>("Result");
 
@@ -89,7 +97,7 @@ namespace Web.Migrations
             modelBuilder.Entity("Web.Data.Round", b =>
                 {
                     b.HasOne("Web.Data.League", "League")
-                        .WithMany()
+                        .WithMany("Rounds")
                         .HasForeignKey("LeagueId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
