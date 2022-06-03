@@ -4,17 +4,17 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "react": "^16.11.0",
+    "react": "^16.14.0",
     "react-bootstrap": "^0.31.5",
-    "react-dom": "^16.11.0",
+    "react-dom": "^16.14.0",
     "react-redux": "^5.1.2",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.8",
-    "react-scripts": "1.0.17",
+    "react-scripts": "5.0.1",
     "react-vis": "^1.11.7",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.3.0",
+    "redux-thunk": "^2.4.1",
     "rimraf": "^2.7.1"
   },
   "scripts": {
@@ -24,6 +24,18 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "moment": "^2.24.0"
+    "moment": "^2.29.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
