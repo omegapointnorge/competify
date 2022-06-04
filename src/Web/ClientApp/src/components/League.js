@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { actionCreators } from "../store/Leagues";
-import { Col, Glyphicon, ButtonToolbar, ButtonGroup, Button } from "react-bootstrap";
+import {
+  Col,
+  Glyphicon,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+} from "react-bootstrap";
 import moment from "moment";
 import "./League.css";
 import RatingChart from "./RatingChart";
@@ -15,7 +21,7 @@ class League extends Component {
     this.state = {
       competitorA: null,
       competitorB: null,
-      result: 1
+      result: 1,
     };
 
     this.addRound = this.addRound.bind(this);
@@ -23,34 +29,33 @@ class League extends Component {
   }
 
   componentWillMount() {
-    const leagueId = this.props.match.params.leagueId;
+    const leagueId = 1;
     this.props.requestLeague(leagueId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // This method runs when incoming props (e.g., route params) change
-    //const startDateIndex = parseInt(nextProps.round.params.startDateIndex, 10) || 0;
-    //this.props.requestLeagues();
-  }
-
   addRound() {
-    const leagueId = this.props.match.params.leagueId;
+    const leagueId = 1;
     const result = this.state.result;
     const reaction = this.state.reaction;
     const competitorA = this.state.competitorA.id;
     const competitorB = this.state.competitorB.id;
-    this.props.addRound(leagueId, { competitorA, competitorB, result, reaction });
+    this.props.addRound(leagueId, {
+      competitorA,
+      competitorB,
+      result,
+      reaction,
+    });
   }
 
   undoAddRound() {
-    const leagueId = this.props.match.params.leagueId;
+    const leagueId = 1;
     const round = this.props.league.rounds[0];
     const competitors = this.props.league.competitors;
     this.setState({
-      competitorA: competitors.find(x => x.id === round.competitorA),
-      competitorB: competitors.find(x => x.id === round.competitorB),
+      competitorA: competitors.find((x) => x.id === round.competitorA),
+      competitorB: competitors.find((x) => x.id === round.competitorB),
       result: round.result,
-      reaction: round.reaction
+      reaction: round.reaction,
     });
 
     this.props.undoAddRound(leagueId);
@@ -63,16 +68,16 @@ class League extends Component {
     const RESULT = {
       A_WON: 0,
       DRAW: 1,
-      B_WON: 2
+      B_WON: 2,
     };
     const REACTION = {
       NONE: 0,
       A_DOMINATED: 1,
       B_DOMINATED: 2,
-      INACTIVITY_PUNISHMENT: 3
+      INACTIVITY_PUNISHMENT: 3,
     };
 
-    const removeRoundCompetitor = competitorPropName => {
+    const removeRoundCompetitor = (competitorPropName) => {
       if (competitorPropName === "competitorA") {
         let competitorA = this.state.competitorB;
         let competitorB = null;
@@ -83,18 +88,25 @@ class League extends Component {
       }
     };
 
-    const RoundCompetitor = propName => {
+    const RoundCompetitor = (propName) => {
       const competitor = this.state[propName] || {};
       const result = this.state.result;
       let className = "competitor";
-      if (propName === "competitorA" && result === RESULT.A_WON) className += " winner";
-      if (propName === "competitorA" && result === RESULT.B_WON) className += " loser";
-      if (propName === "competitorB" && result === RESULT.A_WON) className += " loser";
-      if (propName === "competitorB" && result === RESULT.B_WON) className += " winner";
+      if (propName === "competitorA" && result === RESULT.A_WON)
+        className += " winner";
+      if (propName === "competitorA" && result === RESULT.B_WON)
+        className += " loser";
+      if (propName === "competitorB" && result === RESULT.A_WON)
+        className += " loser";
+      if (propName === "competitorB" && result === RESULT.B_WON)
+        className += " winner";
 
       return (
         <div className={className}>
-          <button onClick={() => removeRoundCompetitor(propName)} className="remove-btn">
+          <button
+            onClick={() => removeRoundCompetitor(propName)}
+            className="remove-btn"
+          >
             <Glyphicon glyph="remove-circle" />
           </button>
           <span>{competitor.name}</span>
@@ -103,26 +115,32 @@ class League extends Component {
     };
 
     const canSelectCompetitorA = this.state.competitorA === null;
-    const canSelectCompetitorB = this.state.competitorB === null && !canSelectCompetitorA;
+    const canSelectCompetitorB =
+      this.state.competitorB === null && !canSelectCompetitorA;
 
-    const addCompetitorToRound = competitor => {
+    const addCompetitorToRound = (competitor) => {
       if (canSelectCompetitorA) this.setState({ competitorA: competitor });
       else if (canSelectCompetitorB) {
         this.setState({ competitorB: competitor });
       }
     };
 
-    const Placeholder = text => (
+    const Placeholder = (text) => (
       <div className="placeholder">
         <p>{text}</p>
       </div>
     );
 
     const RoundEditorButtons = () => {
-      const setRoundResult = (result, reaction) => this.setState({ result, reaction });
+      const setRoundResult = (result, reaction) =>
+        this.setState({ result, reaction });
       const button = (result, reaction, label) => (
         <Button
-          className={result === this.state.result && this.state.reaction === reaction ? "selected" : ""}
+          className={
+            result === this.state.result && this.state.reaction === reaction
+              ? "selected"
+              : ""
+          }
           onClick={() => setRoundResult(result, reaction)}
         >
           {label}
@@ -139,9 +157,17 @@ class League extends Component {
                 &#x1f525;
               </span>
             )}
-            {button(RESULT.A_WON, REACTION.NONE, `${this.state.competitorA.name} won`)}
+            {button(
+              RESULT.A_WON,
+              REACTION.NONE,
+              `${this.state.competitorA.name} won`
+            )}
             {button(RESULT.DRAW, REACTION.NONE, `draw`)}
-            {button(RESULT.B_WON, REACTION.NONE, `${this.state.competitorB.name} won`)}
+            {button(
+              RESULT.B_WON,
+              REACTION.NONE,
+              `${this.state.competitorB.name} won`
+            )}
             {button(
               RESULT.B_WON,
               REACTION.B_DOMINATED,
@@ -164,11 +190,15 @@ class League extends Component {
           {this.state.competitorB && <div className="vs">vs</div>}
           {this.state.competitorB && RoundCompetitor("competitorB")}
         </div>
-        {this.state.competitorA && this.state.competitorB && RoundEditorButtons()}
+        {this.state.competitorA &&
+          this.state.competitorB &&
+          RoundEditorButtons()}
       </Col>
     );
 
-    const RoundEditorProxy = canSelectCompetitorA ? Placeholder("Click a row from the leaderboard to begin a new round.") : RoundEditor;
+    const RoundEditorProxy = canSelectCompetitorA
+      ? Placeholder("Click a row from the leaderboard to begin a new round.")
+      : RoundEditor;
 
     const Rounds = (
       <table className="table table-condensed table-striped">
@@ -181,14 +211,16 @@ class League extends Component {
         </thead>
         <tbody>
           {rounds.slice(0, 10).map((round, idx) => {
-            const competitorA = competitors.find(x => x.id === round.competitorA) || {};
-            const competitorB = competitors.find(x => x.id === round.competitorB) || {};
+            const competitorA =
+              competitors.find((x) => x.id === round.competitorA) || {};
+            const competitorB =
+              competitors.find((x) => x.id === round.competitorB) || {};
             const onClick = () => {
               this.setState({
                 competitorA,
                 competitorB,
                 result: round.result,
-                reaction: round.reaction
+                reaction: round.reaction,
               });
             };
 
@@ -219,7 +251,7 @@ class League extends Component {
               );
             }
 
-            const fmtRatingChange = ratingChange => {
+            const fmtRatingChange = (ratingChange) => {
               return `${ratingChange > 0 ? "+" : ""}${ratingChange}`;
             };
 
@@ -230,8 +262,16 @@ class League extends Component {
                     {competitorA.name}
                     {reactionA}
                   </span>
-                  <span className={classNameA}>{fmtRatingChange(round.ratingChangeA - round.bonusRatingChange)}</span>
-                  {round.bonusRatingChange !== 0 && <span className="draw">{fmtRatingChange(round.bonusRatingChange)}</span>}
+                  <span className={classNameA}>
+                    {fmtRatingChange(
+                      round.ratingChangeA - round.bonusRatingChange
+                    )}
+                  </span>
+                  {round.bonusRatingChange !== 0 && (
+                    <span className="draw">
+                      {fmtRatingChange(round.bonusRatingChange)}
+                    </span>
+                  )}
                 </td>
                 <td>
                   {round.reaction === REACTION.INACTIVITY_PUNISHMENT ? (
@@ -244,13 +284,23 @@ class League extends Component {
                         {competitorB.name}
                         {reactionB}
                       </span>
-                      <span className={classNameB}>{fmtRatingChange(round.ratingChangeB - round.bonusRatingChange)}</span>
-                      {round.bonusRatingChange !== 0 && <span className="draw">{fmtRatingChange(round.bonusRatingChange)}</span>}
+                      <span className={classNameB}>
+                        {fmtRatingChange(
+                          round.ratingChangeB - round.bonusRatingChange
+                        )}
+                      </span>
+                      {round.bonusRatingChange !== 0 && (
+                        <span className="draw">
+                          {fmtRatingChange(round.bonusRatingChange)}
+                        </span>
+                      )}
                     </span>
                   )}
                 </td>
                 <td>
-                  <span className="timestamp">{moment(round.created).fromNow()}</span>
+                  <span className="timestamp">
+                    {moment(round.created).fromNow()}
+                  </span>
                   {idx === 0 && (
                     <Button bsSize="xsmall" onClick={this.undoAddRound}>
                       <Glyphicon glyph="remove" />
@@ -276,20 +326,32 @@ class League extends Component {
             </tr>
           </thead>
           <tbody>
-            {competitors.map(competitor => {
-              const eligibleRounds = rounds.filter(x => x.reaction !== REACTION.INACTIVITY_PUNISHMENT);
+            {competitors.map((competitor) => {
+              const eligibleRounds = rounds.filter(
+                (x) => x.reaction !== REACTION.INACTIVITY_PUNISHMENT
+              );
               const wins = eligibleRounds.filter(
-                x => (x.competitorA === competitor.id && x.result === RESULT.A_WON) || (x.competitorB === competitor.id && x.result === RESULT.B_WON)
+                (x) =>
+                  (x.competitorA === competitor.id &&
+                    x.result === RESULT.A_WON) ||
+                  (x.competitorB === competitor.id && x.result === RESULT.B_WON)
               );
               const draws = eligibleRounds.filter(
-                x => (x.competitorA === competitor.id && x.result === RESULT.DRAW) || (x.competitorB === competitor.id && x.result === RESULT.DRAW)
+                (x) =>
+                  (x.competitorA === competitor.id &&
+                    x.result === RESULT.DRAW) ||
+                  (x.competitorB === competitor.id && x.result === RESULT.DRAW)
               );
               const losses = eligibleRounds.filter(
-                x => (x.competitorA === competitor.id && x.result === RESULT.B_WON) || (x.competitorB === competitor.id && x.result === RESULT.A_WON)
+                (x) =>
+                  (x.competitorA === competitor.id &&
+                    x.result === RESULT.B_WON) ||
+                  (x.competitorB === competitor.id && x.result === RESULT.A_WON)
               );
-              const numberOfResults = wins.length + draws.length + losses.length;
+              const numberOfResults =
+                wins.length + draws.length + losses.length;
 
-              const percentOfTotal = results => {
+              const percentOfTotal = (results) => {
                 let percent = 0;
                 if (numberOfResults !== 0) {
                   percent = (100 * results.length) / numberOfResults;
@@ -339,6 +401,6 @@ class League extends Component {
 }
 
 export default connect(
-  state => state.leagues,
-  dispatch => bindActionCreators(actionCreators, dispatch)
+  (state) => state.leagues,
+  (dispatch) => bindActionCreators(actionCreators, dispatch)
 )(League);
