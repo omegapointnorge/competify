@@ -47,7 +47,7 @@ namespace Web.Controllers
             await _db.AddAsync(entity);
             await _db.SaveChangesAsync();
 
-            return Created($"/api/Leagues/{league.Id}/Competitors", entity.Summary());
+            return Created($"/api/Leagues/{league.Id}/Competitors", entity.Summary(entity.League.Rounds));
         }
 
         public struct AddCompetitorDto
@@ -148,49 +148,6 @@ namespace Web.Controllers
                 _db.Add(round);
             }
         }
-
-        ///**
-        // * Removes points from inactive players and places them in the league bonus pool
-        // */
-        //[HttpPost("{leagueId}/PunishInactivity")]
-        //public async Task<IActionResult> PunishInactivity(int leagueId) {
-        //    var league = await GetLeagueForSummary(leagueId);
-        //    if (league == null) {
-        //        return BadRequest(new { Error = "League not found" });
-        //    }
-
-        //    var inactiveCompetitors = GetInactiveCompetitors(league, minInactiveDays: 15);
-
-        //    if (inactiveCompetitors.Count() == 0)
-        //    {
-        //        return BadRequest(new { Error = "No inactive competitors" });
-        //    }
-
-        //    var medianRating = GetMedianRating(league);
-
-        //    foreach (var competitor in inactiveCompetitors) {
-
-        //        var (ratingPunishment, _)  = EloCalculator.GetRatingChange(competitor.Rating, medianRating, Result.B_WON);
-        //        var round = new Round
-        //        {
-        //            League = league,
-        //            Created = DateTime.Now,
-        //            CompetitorA = competitor.Id,
-        //            CompetitorB = competitor.Id,
-        //            RatingChangeA = ratingPunishment,
-        //            RatingChangeB = 0,
-        //            Result = Result.B_WON,
-        //            Reaction = Reaction.INACTIVITY_PUNISHMENT,
-        //        };
-        //        competitor.Rating += ratingPunishment;
-        //        _db.Add(round);
-        //    }
-
-        //    await _db.SaveChangesAsync();
-        //    return new CreatedResult($"/api/Leagues/{league.Id}", league.Summary());
-        //}
-
-
 
         private async Task<League> GetLeagueForSummary(int leagueId)
         {

@@ -8,12 +8,11 @@ namespace Data
 {
     public class Round : Entity
     {
-        public int CompetitorA { get; set; } 
+        public int CompetitorA { get; set; }
         public int CompetitorB { get; set; }
         public int RatingChangeA { get; set; }
-        public int RatingChangeB { get; set; }        
+        public int RatingChangeB { get; set; }
         public int BonusRatingChange { get; set; }
-
 
         public int LeagueId { get; set; }
         public League League { get; set; }
@@ -21,6 +20,7 @@ namespace Data
         public Result Result { get; set; }
         public Reaction Reaction { get; set; }
         public DateTime Created { get; set; }
+        public bool IsPartOfRound(int userId) => CompetitorA == userId || CompetitorB == userId;
     }
 
     public enum Result
@@ -30,7 +30,7 @@ namespace Data
         B_WON = 2,
     }
 
-    public enum Reaction 
+    public enum Reaction
     {
         NONE = 0,
         A_DOMINATED = 1,
@@ -38,8 +38,10 @@ namespace Data
         INACTIVITY_PUNISHMENT = 3,
     }
 
-    public static class RoundEx {
-        public static RoundSummary Summary(this Round round) {
+    public static class RoundEx
+    {
+        public static RoundSummary Summary(this Round round)
+        {
             return new RoundSummary
             {
                 CompetitorA = round.CompetitorA,

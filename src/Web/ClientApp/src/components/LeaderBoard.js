@@ -1,6 +1,12 @@
 import React from "react";
 
-const LeaderboardRow = (competitor, competitorA, competitorB, removeRoundCompetitor, addCompetitorToRound) => {
+const LeaderboardRow = (
+  competitor,
+  competitorA,
+  competitorB,
+  removeRoundCompetitor,
+  addCompetitorToRound
+) => {
   const selectedAsA = competitorA && competitorA.id === competitor.id;
   const selectedAsB = competitorB && competitorB.id === competitor.id;
   const selected = selectedAsA || selectedAsB;
@@ -16,26 +22,53 @@ const LeaderboardRow = (competitor, competitorA, competitorB, removeRoundCompeti
   };
   const className = selected ? "selected onclick-enabled" : "onclick-enabled";
   const winStreak = competitor.winStreak;
+  const dominations = competitor.dominations;
+  const dominated = competitor.dominated;
   return (
     <tr key={competitor.id} className={className} onClick={onClick}>
       <td>
         <span>{competitor.name}</span>
+        {[...Array(dominations)].map(() => (
+          <span role="img" aria-label="reaction">
+            &#x1f525;
+          </span>
+        ))}
+        {competitor.dominated && (
+          <span role="img" aria-label="reaction">
+            &#x1f4a9;
+          </span>
+        )}
       </td>
       <td>
         <span className="rating">{competitor.rating}</span>
       </td>
-      <td>{Math.abs(competitor.winStreak) > 2 && <span className={winStreak > 0 ? "winner" : "loser"}>&nbsp;{competitor.winStreak}&nbsp;</span>}</td>
+      <td>
+        {Math.abs(competitor.winStreak) > 2 && (
+          <span className={winStreak > 0 ? "winner" : "loser"}>
+            &nbsp;{competitor.winStreak}&nbsp;
+          </span>
+        )}
+      </td>
     </tr>
   );
 };
 
-const LeaderBoard = ({ competitors, competitorA, competitorB, removeRoundCompetitor, addCompetitorToRound }) => {
+const LeaderBoard = ({
+  competitors,
+  competitorA,
+  competitorB,
+  removeRoundCompetitor,
+  addCompetitorToRound,
+}) => {
   return (
     <section>
       <p style={{ textAlign: "right" }}>
         <span>
           Bonus pool:&nbsp;
-          <span className="draw">{1500 * competitors.length - competitors.map(x => x.rating).reduce((a, b) => a + b, 0)}</span>
+          <span className="draw">
+            {1500 * competitors.length -
+              competitors.map((x) => x.rating).reduce((a, b) => a + b, 0)}
+          </span>
         </span>
       </p>
       <table className="leaderboard table table-condensed table-striped">
@@ -46,7 +79,17 @@ const LeaderBoard = ({ competitors, competitorA, competitorB, removeRoundCompeti
             <th>Streak</th>
           </tr>
         </thead>
-        <tbody>{competitors.map(c => LeaderboardRow(c, competitorA, competitorB, removeRoundCompetitor, addCompetitorToRound))}</tbody>
+        <tbody>
+          {competitors.map((c) =>
+            LeaderboardRow(
+              c,
+              competitorA,
+              competitorB,
+              removeRoundCompetitor,
+              addCompetitorToRound
+            )
+          )}
+        </tbody>
       </table>
     </section>
   );

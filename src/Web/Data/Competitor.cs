@@ -23,14 +23,23 @@ namespace Data
 
     public static class CompetitorEx
     {
-        public static CompetitorSummary Summary(this Competitor competitor)
+        public static CompetitorSummary Summary(this Competitor competitor, ICollection<Round> rounds)
         {
+            var dominated = rounds
+                .Where(r => (r.Reaction == Reaction.B_DOMINATED && r.CompetitorA == competitor.Id) || (r.Reaction == Reaction.A_DOMINATED && r.CompetitorB == competitor.Id))
+                .Where(r => r.Created > DateTime.Now.AddMonths(-1));
+            var dominations = rounds.Where(r => (r.Reaction == Reaction.A_DOMINATED && r.CompetitorA == competitor.Id) ||
+                                              (r.Reaction == Reaction.B_DOMINATED && r.CompetitorB == competitor.Id));
+
+
             return new CompetitorSummary
             {
                 Id = competitor.Id,
                 Name = competitor.Name,
                 Rating = competitor.Rating,
-                WinStreak = competitor.WinStreak
+                WinStreak = competitor.WinStreak,
+                Dominated = dominated.Any(),
+                Dominations = dominations.Count()
             };
         }
 
@@ -42,5 +51,7 @@ namespace Data
         public string Name { get; set; }
         public int Rating { get; set; }
         public int WinStreak { get; internal set; }
+        public bool Dominated { get; set; }
+        public int Dominations { get; set; }
     }
 }
