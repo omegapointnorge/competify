@@ -13,14 +13,15 @@ namespace Data
         public ICollection<Round> Rounds { get; set; }
     }
 
-    public static class LeagueEx {
+    public static class LeagueEx
+    {
         public static LeagueSummary Summary(this League league)
         {
             return new LeagueSummary
             {
                 Id = league.Id,
                 Name = league.Name,
-                Competitors = league.Competitors?.Select(c => c.Summary()).OrderByDescending(c => c.Rating).ToList(),
+                Competitors = league.Competitors?.Select(c => c.Summary(league.Rounds)).OrderByDescending(c => c.Rating).ToList(),
                 Rounds = league.Rounds?.Select(r => r.Summary()).OrderByDescending(r => r.Created)/*.Take(10)*/.ToList(),
             };
         }
