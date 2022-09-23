@@ -22,10 +22,12 @@ class League extends Component {
       competitorA: null,
       competitorB: null,
       result: 1,
+      nRounds: 10,
     };
 
     this.addRound = this.addRound.bind(this);
     this.undoAddRound = this.undoAddRound.bind(this);
+    this.showMoreRounds = this.showMoreRounds.bind(this);
   }
 
   componentWillMount() {
@@ -59,6 +61,12 @@ class League extends Component {
     });
 
     this.props.undoAddRound(leagueId);
+  }
+
+  showMoreRounds() {
+    this.setState({
+      nRounds: this.state.nRounds + 10,
+    })
   }
 
   render() {
@@ -210,7 +218,7 @@ class League extends Component {
           </tr>
         </thead>
         <tbody>
-          {rounds.slice(0, 10).map((round, idx) => {
+          {rounds.slice(0, this.state.nRounds).map((round, idx) => {
             const competitorA =
               competitors.find((x) => x.id === round.competitorA) || {};
             const competitorB =
@@ -311,6 +319,8 @@ class League extends Component {
             );
           })}
         </tbody>
+        <button
+          onClick={() => this.showMoreRounds()}>Show more</button>
       </table>
     );
 
