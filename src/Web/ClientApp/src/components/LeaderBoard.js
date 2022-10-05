@@ -27,7 +27,10 @@ const LeaderboardRow = (
   return (
     <tr key={competitor.id} className={className} onClick={onClick}>
       <td>
-        <span>{competitor.name}</span>
+        <span>
+          {competitor.name === "sondre" && <span>&#x1F3C6;</span>}
+          {competitor.name}
+        </span>
         {[...Array(dominations)].map(() => (
           <span role="img" aria-label="reaction">
             &#x1f525;
