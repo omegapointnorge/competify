@@ -31,7 +31,7 @@ const LeaderboardRow = (
           {competitor.name === "sondre" && <span>&#x1F3C6;</span>}
           {competitor.name}
         </span>
-        {dominations.length <= 3 && dominations.length > 0 ? (
+        {dominations && dominations.length <= 3 && dominations.length > 0 ? (
           [...Array(dominations)].map(() => (
             <span role="img" aria-label="reaction">
               &#x1f525;
@@ -39,7 +39,7 @@ const LeaderboardRow = (
           ))
         ) : (
           <span style={{ fontWeight: "bold" }}>
-            {dominations}&nbsp;x&nbsp;
+            &nbsp;{dominations}x
             <span role="img" aria-label="reaction">
               &#x1f525;
             </span>

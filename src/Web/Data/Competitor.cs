@@ -27,7 +27,7 @@ namespace Data
         {
             var dominated = rounds
                 .Where(r => (r.Reaction == Reaction.B_DOMINATED && r.CompetitorA == competitor.Id) || (r.Reaction == Reaction.A_DOMINATED && r.CompetitorB == competitor.Id))
-                .Where(r => r.Created > DateTime.Now.AddMonths(-1));
+                .Where(r => r.Created > DateTime.Now.AddDays(-10));
             var dominations = rounds.Where(r => (r.Reaction == Reaction.A_DOMINATED && r.CompetitorA == competitor.Id) ||
                                               (r.Reaction == Reaction.B_DOMINATED && r.CompetitorB == competitor.Id));
 
