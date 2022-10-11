@@ -129,7 +129,7 @@ namespace Web.Controllers
         private void ApplyInactivityRatingReduction(League league)
         {
             var medianRating = GetMedianRating(league);
-            var inactiveCompetitors = GetInactiveCompetitors(league, minInactiveDays: 8);
+            var inactiveCompetitors = GetInactiveCompetitors(league, minInactiveDays: 20);
             foreach (var competitor in inactiveCompetitors)
             {
                 var (ratingPunishment, _) = EloCalculator.GetRatingChange(competitor.Rating, medianRating, Result.B_WON);

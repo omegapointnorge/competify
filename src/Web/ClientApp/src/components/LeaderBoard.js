@@ -31,11 +31,20 @@ const LeaderboardRow = (
           {competitor.name === "sondre" && <span>&#x1F3C6;</span>}
           {competitor.name}
         </span>
-        {[...Array(dominations)].map(() => (
-          <span role="img" aria-label="reaction">
-            &#x1f525;
+        {dominations.length <= 3 ? (
+          [...Array(dominations)].map(() => (
+            <span role="img" aria-label="reaction">
+              &#x1f525;
+            </span>
+          ))
+        ) : (
+          <span>
+            {dominations} x
+            <span role="img" aria-label="reaction">
+              &#x1f525;
+            </span>
           </span>
-        ))}
+        )}
         {competitor.dominated && (
           <span role="img" aria-label="reaction">
             &#x1f4a9;
