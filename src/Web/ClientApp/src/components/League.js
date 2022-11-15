@@ -369,7 +369,7 @@ class League extends Component {
               };
 
               return (
-                <tr key={competitor.id}>
+                <tr key={competitor.id} onClick={e => window.location.href="competitor/"+competitor.id}>
                   <td>{competitor.name}</td>
                   <td>{percentOfTotal(wins)}%</td>
                   <td>{percentOfTotal(losses)}%</td>
