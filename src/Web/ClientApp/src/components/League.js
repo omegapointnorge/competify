@@ -14,6 +14,8 @@ import "./League.css";
 import RatingChart from "./RatingChart";
 import LeaderBoard from "./LeaderBoard";
 
+const CURRENT_LEAGUEID = 2;
+
 class League extends Component {
   constructor(props, context) {
     super(props, context);
@@ -31,12 +33,12 @@ class League extends Component {
   }
 
   componentWillMount() {
-    const leagueId = 1;
+    const leagueId = CURRENT_LEAGUEID;
     this.props.requestLeague(leagueId);
   }
 
   addRound() {
-    const leagueId = 1;
+    const leagueId = CURRENT_LEAGUEID;
     const result = this.state.result;
     const reaction = this.state.reaction;
     const competitorA = this.state.competitorA.id;
@@ -50,7 +52,7 @@ class League extends Component {
   }
 
   undoAddRound() {
-    const leagueId = 1;
+    const leagueId = CURRENT_LEAGUEID;
     const round = this.props.league.rounds[0];
     const competitors = this.props.league.competitors;
     this.setState({

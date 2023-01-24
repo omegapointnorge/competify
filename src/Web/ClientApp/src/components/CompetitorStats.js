@@ -12,7 +12,7 @@ class CompetitorStats extends Component {
     }
 
     componentWillMount() {
-        const leagueId = 1;
+        const leagueId = 2;
         this.props.requestLeague(leagueId);
     }
 
