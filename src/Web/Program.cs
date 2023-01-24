@@ -23,6 +23,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<CompetifyDbContext>();
+    dataContext.Database.Migrate();
+}
+
 app.MapControllers();
 
 app.UseStaticFiles();
