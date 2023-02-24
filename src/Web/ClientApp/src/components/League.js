@@ -332,6 +332,7 @@ class League extends Component {
           <thead>
             <tr>
               <th>Player</th>
+              <th>W/L</th>
               <th>% Wins</th>
               <th>% Losses</th>
             </tr>
@@ -373,6 +374,7 @@ class League extends Component {
               return (
                 <tr key={competitor.id} onClick={e => window.location.href="competitor/"+competitor.id}>
                   <td>{competitor.name}</td>
+                  <td>{wins.length}/{losses.length}</td>
                   <td>{percentOfTotal(wins)}%</td>
                   <td>{percentOfTotal(losses)}%</td>
                 </tr>
