@@ -14,7 +14,7 @@ import "./League.css";
 import RatingChart from "./RatingChart";
 import LeaderBoard from "./LeaderBoard";
 
-const CURRENT_LEAGUEID = 2;
+const CURRENT_LEAGUEID = 1;
 
 class League extends Component {
   constructor(props, context) {
