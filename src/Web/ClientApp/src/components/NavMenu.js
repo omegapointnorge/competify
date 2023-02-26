@@ -16,7 +16,7 @@ class NavMenu extends Component {
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>Competify</Link>
+            <Link to={'/'}>Competify 2.0</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
