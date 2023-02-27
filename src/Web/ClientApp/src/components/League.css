@@ -94,3 +94,7 @@ table .timestamp {
 .loser {
     background-color: rgb(255, 200, 200);
 }
+
+tr[name="playerProfile"] {
+    cursor: pointer;
+}

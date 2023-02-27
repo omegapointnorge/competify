@@ -320,7 +320,7 @@ class League extends Component {
               </tr>
             );
           })}
-        </tbody>
+            </tbody>
         <button
           onClick={() => this.showMoreRounds()}>Show more</button>
       </table>
@@ -371,8 +371,8 @@ class League extends Component {
                 return percent.toFixed(2);
               };
 
-              return (
-                <tr key={competitor.id} onClick={e => window.location.href="competitor/"+competitor.id}>
+                return (
+                  <tr key={competitor.id} onClick={e => window.location.href = "competitor/" + competitor.id} name="playerProfile">
                   <td>{competitor.name}</td>
                   <td>{wins.length}/{losses.length}</td>
                   <td>{percentOfTotal(wins)}%</td>
@@ -387,6 +387,7 @@ class League extends Component {
     return (
       <main>
         <h1>{this.props.league.name}</h1>
+        <small>Forked from <a href="https://github.com/itverket/competify" target="_blank">itverket/competify</a></small>
         <LeaderBoard
           competitors={competitors}
           competitorA={this.state.competitorA}
