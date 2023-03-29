@@ -302,7 +302,7 @@ class League extends Component {
                                 )}
                             </td>
                             <td>
-                  <span className="timestamp">
+                  <span className="timestamp" title={moment(round.created).toLocaleString()}>
                     {moment(round.created).fromNow()}
                   </span>
                                 {idx === 0 && (
