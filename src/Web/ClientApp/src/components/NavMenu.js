@@ -1,11 +1,11 @@
-﻿import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actionCreators } from '../store/Leagues';
+﻿import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {actionCreators} from '../store/Leagues';
 
-import { Link } from 'react-router-dom';
-import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import {Link} from 'react-router-dom';
+import {Glyphicon, Nav, Navbar, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import './NavMenu.css';
 
 
@@ -18,18 +18,18 @@ class NavMenu extends Component {
                     <Navbar.Brand>
                         <Link to={'/'}>Competify 2.0</Link>
                     </Navbar.Brand>
-                    <Navbar.Toggle />
+                    <Navbar.Toggle/>
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
                         <LinkContainer to={'/'} exact>
                             <NavItem>
-                                <Glyphicon glyph='list' /> Leagues
+                                <Glyphicon glyph='list'/> Leagues
                             </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'#'}>
                             <NavItem>
-                                <Glyphicon glyph='refresh' /> Change Theme (Coming soon?)
+                                <Glyphicon glyph='refresh'/> Change Theme (Coming soon?)
                             </NavItem>
                         </LinkContainer>
                     </Nav>

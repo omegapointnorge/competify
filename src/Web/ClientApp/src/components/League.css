@@ -1,9 +1,9 @@
 ﻿
-
 .leaderboard tr span {
     display: inline-block;
     padding: 0.2em 0;
 }
+
 .leaderboard .rating {
     background: #333;
     padding: 0.2em 0.5em;
@@ -69,9 +69,9 @@ button.selected {
 }
 
 
-table .winner, 
-table .loser, 
-table .draw, 
+table .winner,
+table .loser,
+table .draw,
 table .timestamp {
     display: inline-block;
     padding: 0.2em 0.5em;
@@ -86,10 +86,12 @@ table .timestamp {
     font-weight: bold;
     background-color: rgb(200, 255, 200);
 }
+
 .round .competitor.draw,
 .draw {
     background-color: rgb(238, 238, 238);
 }
+
 .round .competitor.loser,
 .loser {
     background-color: rgb(255, 200, 200);
