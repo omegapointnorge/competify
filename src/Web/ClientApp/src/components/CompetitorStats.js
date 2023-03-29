@@ -3,8 +3,8 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {actionCreators} from "../store/Leagues";
 import "./League.css";
-import emotion from '../emotion.gif';
-import warning from '../warning.png';
+import emotion from '../assets/emotion.gif';
+import warning from '../assets/warning.png';
 
 class CompetitorStats extends Component {
     constructor(props, context) {
