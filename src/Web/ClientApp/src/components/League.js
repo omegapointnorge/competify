@@ -370,7 +370,8 @@ class League extends Component {
                             <tr key={competitor.id} onClick={e => window.location.href = "competitor/" + competitor.id}
                                 name="playerProfile">
                                 <td>{competitor.name}</td>
-                                <td>{wins.length}/{losses.length}</td>
+                                <td>{competitor.isPrivateMatches ?
+                                    <span>&#x1F512;</span> : wins.length + "/" + losses.length}</td>
                                 <td>{percentOfTotal(wins)}%</td>
                                 <td>{percentOfTotal(losses)}%</td>
                             </tr>
