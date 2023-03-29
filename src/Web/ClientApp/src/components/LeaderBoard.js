@@ -24,11 +24,12 @@ const LeaderboardRow = (
   const winStreak = competitor.winStreak;
   const dominations = competitor.dominations;
   const dominated = competitor.dominated;
+  const playerWithTrophy = "sondre";
   return (
     <tr key={competitor.id} className={className} onClick={onClick}>
       <td>
         <span>
-          {competitor.name === "sondre" && <span>&#x1F3C6;</span>}
+          {competitor.name.toLowerCase() === playerWithTrophy && <span>&#x1F3C6;</span>}
           {competitor.name}
         </span>
         {dominations <= 3 &&

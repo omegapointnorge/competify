@@ -405,7 +405,9 @@ class League extends Component {
         <h2>Stats</h2>
         {Stats}
 
-        <RatingChart league={this.props.league} />
+          <RatingChart league={this.props.league} />
+          <hr/>
+        <small>Sourcecode: <a href={"https://github.com/BredeFK/competify"}>github.com/BredeFK/competify</a> </small>
       </main>
     );
   }
