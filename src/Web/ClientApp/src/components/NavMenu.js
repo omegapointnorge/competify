@@ -27,11 +27,6 @@ class NavMenu extends Component {
                                 <Glyphicon glyph='list'/> Leagues
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to={'#'}>
-                            <NavItem>
-                                <Glyphicon glyph='refresh'/> Change Theme (Coming soon?)
-                            </NavItem>
-                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
