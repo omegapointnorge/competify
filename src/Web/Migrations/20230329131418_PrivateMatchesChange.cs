@@ -13,7 +13,7 @@ namespace Web.Migrations
                 table: "Competitors",
                 type: "bit",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
