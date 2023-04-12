@@ -31,7 +31,7 @@ class Authenticate extends Component {
     render() {
         return (
             <div>
-                <h1>Competify 2.0</h1>
+                <h1>Competify</h1>
                 <p>Enter the super secret passphrase to access the awesomeness!</p>
                 <FormControl
                     type="text"

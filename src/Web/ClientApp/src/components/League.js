@@ -8,7 +8,7 @@ import "./League.css";
 import RatingChart from "./RatingChart";
 import LeaderBoard from "./LeaderBoard";
 
-const CURRENT_LEAGUEID = 1;
+const CURRENT_LEAGUEID = 2;
 
 class League extends Component {
     constructor(props, context) {
@@ -384,8 +384,6 @@ class League extends Component {
         return (
             <main>
                 <h1>{this.props.league.name}</h1>
-                <small>Forked from <a href="https://github.com/itverket/competify"
-                                      target="_blank">itverket/competify</a></small>
                 <LeaderBoard
                     competitors={competitors}
                     competitorA={this.state.competitorA}
@@ -404,9 +402,6 @@ class League extends Component {
                 {Stats}
 
                 <RatingChart league={this.props.league}/>
-                <hr/>
-                <small>Sourcecode: <a href={"https://github.com/BredeFK/competify"}>github.com/BredeFK/competify</a>
-                </small>
             </main>
         );
     }
