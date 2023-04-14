@@ -6,10 +6,9 @@ namespace Data
     {
         public string Name { get; set; }
         public int Rating { get; set; }
-
+        public bool IsPrivateMatches { get; set; }
         public int LeagueId { get; set; }
         public League League { get; set; }
-
         public int WinStreak { get; set; }
 
         internal void UpdateWinStreak(bool competitorWon)
@@ -39,7 +38,8 @@ namespace Data
                 Rating = competitor.Rating,
                 WinStreak = competitor.WinStreak,
                 Dominated = dominated.Any(),
-                Dominations = dominations.Count()
+                Dominations = dominations.Count(),
+                IsPrivateMatches = competitor.IsPrivateMatches
             };
         }
 
@@ -53,5 +53,6 @@ namespace Data
         public int WinStreak { get; internal set; }
         public bool Dominated { get; set; }
         public int Dominations { get; set; }
+        public bool IsPrivateMatches { get; set; }
     }
 }

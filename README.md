@@ -1,1 +1,3 @@
+# Competify
+
 Happy coding!
